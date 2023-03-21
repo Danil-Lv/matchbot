@@ -6,9 +6,9 @@ from aiogram import types, Dispatcher
 
 from create_bot import bot, dp
 from keyboards import kb_start, kb
-from sqlalchemy_folder.db import get_user
-from sqlalchemy_folder.test_bd import s
-from sqlalchemy_folder.db import Profile
+from db_folder.db import get_user
+from db_folder.test_bd import s
+from db_folder.db import Profile
 
 
 class LikeStateGroup(StatesGroup):

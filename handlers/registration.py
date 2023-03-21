@@ -4,7 +4,7 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
 from create_bot import bot
 from keyboards import kb_start, gender_kb
-from sqlalchemy_folder.db import create_user, get_user
+from db_folder.db import create_user, get_user
 
 storage = MemoryStorage()
 

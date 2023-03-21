@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  db:
+    container_name: db
+    image: postgres:alpine3.17
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+    env_file:
+      - ./.env
+
+
+  bot:
+    container_name: bot
+    build: .
+    command: python /usr/src/matchbot/bot.py
+    volumes:
+      - .:/usr/src/matchbot
+    depends_on:
+      - db
+    env_file:
+      - ./.env
+
+
+volumes:
+  postgres_data:

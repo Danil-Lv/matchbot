@@ -1,13 +1,20 @@
-from sqlalchemy.ext.declarative import declarative_base
+from os import getenv
 
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine, Column, Integer, String, text, BigInteger
 from sqlalchemy import update
-
-from sqlalchemy_folder.test_bd import s
-
 from sqlalchemy.sql.expression import select
+from dotenv import load_dotenv
 
-engine = create_engine("postgresql+psycopg2://postgres:1111@localhost/voice", echo=True)
+from db_folder.test_bd import s
+
+
+
+load_dotenv()
+
+engine = create_engine(
+    f"postgresql+psycopg2://{getenv('POSTGRES_USER')}:{getenv('POSTGRES_PASSWORD')}@{getenv('DB_HOST')}:{getenv('DB_PORT')}/{getenv('DB_NAME')}",
+    echo=True)
 
 Base = declarative_base()
 
@@ -25,7 +32,6 @@ class Profile(Base):
 
 
 Base.metadata.create_all(bind=engine)
-
 
 
 def create_user(user_id, data):
